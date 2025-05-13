@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="quiz.css">
+  <title>Quiz de Pegada de Carbono</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz de Pegada de Carbono</h1>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div id="quiz">
+    </div>
+  </div>
+
+  <script>
+
+    const questions = [
+      {
+        question: "1. Quantos quilômetros você dirige por semana?",
+        options: [
+          { text: "Menos de 50 km", value: 1 },
+          { text: "50-150 km", value: 2 },
+          { text: "Mais de 150 km", value: 3 }
+        ]
+      },
+      {
+        question: "2. Você utiliza transporte público?",
+        options: [
+          { text: "Sempre", value: 1 },
+          { text: "Às vezes", value: 2 },
+          { text: "Nunca", value: 3 }
+        ]
+      },
+      {
+        question: "3. Quantos voos internacionais você fez no último ano?",
+        options: [
+          { text: "Nenhum", value: 1 },
+          { text: "1-2", value: 2 },
+          { text: "3 ou mais", value: 3 }
+        ]
+      },
+      {
+        question: "4. Você recicla o lixo?",
+        options: [
+          { text: "Sempre", value: 1 },
+          { text: "Às vezes", value: 2 },
+          { text: "Nunca", value: 3 }
+        ]
+      },
+      {
+        question: "5. Quantas pessoas moram na sua casa?",
+        options: [
+          { text: "1", value: 3 },
+          { text: "2-3", value: 2 },
+          { text: "Mais de 3", value: 1 }
+        ]
+      },
+      {
+        question: "6. Qual é o seu consumo de carne por semana?",
+        options: [
+          { text: "Nenhum", value: 1 },
+          { text: "1-3 vezes", value: 2 },
+          { text: "Mais de 3 vezes", value: 3 }
+        ]
+      },
+      {
+        question: "7. Você utiliza energia renovável em sua casa?",
+        options: [
+          { text: "Sim", value: 1 },
+          { text: "Parcialmente", value: 2 },
+          { text: "Não", value: 3 }
+        ]
+      },
+      {
+        question: "8. Quantos quilos de lixo você produz por semana?",
+        options: [
+          { text: "Menos de 5 kg", value: 1 },
+          { text: "5-10 kg", value: 2 },
+          { text: "Mais de 10 kg", value: 3 }
+        ]
+      },
+      {
+        question: "9. Você planta árvores ou tem um jardim?",
+        options: [
+          { text: "Sim", value: 1 },
+          { text: "Não", value: 3 }
+        ]
+      },
+      {
+        question: "10. Você utiliza produtos descartáveis com frequência?",
+        options: [
+          { text: "Sempre", value: 3 },
+          { text: "Às vezes", value: 2 },
+          { text: "Nunca", value: 1 }
+        ]
+      },
+      {
+        question: "11. Quantos eletrodomésticos você tem em sua casa?",
+        options: [
+          { text: "Menos de 5", value: 1 },
+          { text: "5-10", value: 2 },
+          { text: "Mais de 10", value: 3 }
+        ]
+      },
+      {
+        question: "12. Você se preocupa com a eficiência energética de seus aparelhos?",
+        options: [
+          { text: "Sim", value: 1 },
+          { text: "Não", value: 3 }
+        ]
+      },
+      {
+        question: "13. Você consome água em excesso?",
+        options: [
+          { text: "Não", value: 1 },
+          { text: "Às vezes", value: 2 },
+          { text: "Sempre", value: 3 }
+        ]
+      },
+      {
+        question: "14. Você faz uso de bicicletas ou anda a pé para distâncias curtas?",
+        options: [
+          { text: "Sempre", value: 1 },
+          { text: "Às vezes", value: 2 },
+          { text: "Nunca", value: 3 }
+        ]
+      },
+      {
+        question: "15. Você tem consciência ambiental e pratica o consumo consciente?",
+        options: [
+          { text: "Sim", value: 1 },
+          { text: "Parcialmente", value: 2 },
+          { text: "Não", value: 3 }
+        ]
+      },
+        
+    {
+      question: "16. Quantas sacolas plásticas você utiliza por semana?",
+      options: [
+        { text: "Menos de 5", value: 1 },
+        { text: "5–10", value: 2 },
+        { text: "Mais de 10", value: 3 }
+      ]
+    },
+    {
+      question: "17. Qual a duração média do seu banho?",
+      options: [
+        { text: "Menos de 5 minutos", value: 1 },
+        { text: "5–10 minutos", value: 2 },
+        { text: "Mais de 10 minutos", value: 3 }
+      ]
+    },
+    {
+      question: "18. Você ajusta o termostato de sua casa para economizar energia?",
+      options: [
+        { text: "Sempre", value: 1 },
+        { text: "Às vezes", value: 2 },
+        { text: "Nunca", value: 3 }
+      ]
+    },
+    {
+      question: "19. Você costuma comprar alimentos produzidos localmente ou importados?",
+      options: [
+        { text: "Principalmente locais", value: 1 },
+        { text: "Tanto faz", value: 2 },
+        { text: "Principalmente importados", value: 3 }
+      ]
+    },
+    {
+      question: "20. Você reaproveita ou conserta objetos em vez de descartar?",
+      options: [
+        { text: "Sempre", value: 1 },
+        { text: "Às vezes", value: 2 },
+        { text: "Nunca", value: 3 }
+      ]
+    }
+    ];
+
+    let currentQuestion = 0;
+    let totalScore = 0;
+
+    function updateProgress() {
+      const progressBar = document.getElementById('progress-bar');
+      const progress = (currentQuestion / questions.length) * 100;
+      progressBar.style.width = progress + "%";
+    }
+
+    function showQuestion() {
+      const quizContainer = document.getElementById('quiz');
+      quizContainer.innerHTML = "";
+
+      if (currentQuestion < questions.length) {
+        const currentData = questions[currentQuestion];
+
+        const questionElem = document.createElement('div');
+        questionElem.className = "question";
+        questionElem.textContent = currentData.question;
+        quizContainer.appendChild(questionElem);
+
+
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = "options";
+
+        currentData.options.forEach((option, index) => {
+          const label = document.createElement('label');
+          label.className = "option";
+
+          const input = document.createElement('input');
+          input.type = "radio";
+          input.name = "option";
+          input.value = option.value;
+          if (index === 0) {
+            input.checked = true;
+          }
+
+          label.appendChild(input);
+          label.appendChild(document.createTextNode(" " + option.text));
+          optionsDiv.appendChild(label);
+        });
+
+        quizContainer.appendChild(optionsDiv);
+
+        const nextButtonWrapper = document.createElement('div');
+        nextButtonWrapper.className = 'wrapper';
+        nextButtonWrapper.innerHTML = `
+          <div class="link_wrapper">
+            <a href="#" id="next-btn">Próxima</a>
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+                <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
+              </svg>
+            </div>
+          </div>
+        `;
+        const nextBtn = nextButtonWrapper.querySelector('#next-btn');
+        const linkWrapper = nextButtonWrapper.querySelector('.link_wrapper');
+
+        nextBtn.addEventListener('click', function(event) {
+          event.preventDefault();
+          nextQuestion();
+        });
+
+        nextBtn.addEventListener('mouseover', function() {
+          linkWrapper.classList.add('active');
+        });
+        nextBtn.addEventListener('mouseout', function() {
+          linkWrapper.classList.remove('active');
+        });
+
+        quizContainer.appendChild(nextButtonWrapper);
+      } else {
+        showResult();
+      }
+      updateProgress();
+    }
+
+    function nextQuestion() {
+      const selectedOption = document.querySelector('input[name="option"]:checked');
+      if (selectedOption) {
+        totalScore += parseInt(selectedOption.value);
+        currentQuestion++;
+        showQuestion();
+      }
+    }
+
+    function showResult() {
+      const quizContainer = document.getElementById('quiz');
+      quizContainer.innerHTML = "";
+
+      const resultElem = document.createElement('div');
+      resultElem.className = "result";
+
+      let message = "";
+      if (totalScore <= 20) {
+        message = "Sua pegada de carbono é baixa. Parabéns por suas práticas sustentáveis!";
+      } else if (totalScore <= 30) {
+        message = "Sua pegada de carbono é moderada. Considere adotar mais práticas sustentáveis.";
+      } else {
+        message = "Sua pegada de carbono é alta. Reflita sobre seus hábitos e busque alternativas mais ecológicas.";
+      }
+
+      resultElem.innerHTML = `<h2>Resultado do Quiz</h2>
+                              <p>Pontuação: ${totalScore}</p>
+                              <p>${message}</p>`;
+      quizContainer.appendChild(resultElem);
+      const progressBar = document.getElementById('progress-bar');
+      progressBar.style.width = "100%";
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>

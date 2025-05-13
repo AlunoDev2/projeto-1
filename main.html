@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz da Pegada de Carbono</title>
+  <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Descubra sua Pegada de Carbono!</h1>
+  <p>Participe do nosso quiz e descubra quanto carbono você consome no seu dia a dia.</p>
+  
+  <section class="explanation">
+    <h2>O que é a Pegada de Carbono?</h2>
+    <p>
+      A pegada de carbono é a medida da quantidade de gases de efeito estufa, como o dióxido de carbono (CO₂), emitidos direta ou indiretamente por atividades humanas. Essa métrica é geralmente expressa em toneladas de CO₂ equivalente e serve para avaliar o impacto ambiental do nosso estilo de vida.
+    </p>
+    <h3>Consequências</h3>
+    <p>
+      Uma pegada de carbono elevada contribui significativamente para o aquecimento global e as mudanças climáticas. Entre as consequências estão o aumento da temperatura média do planeta, eventos climáticos extremos, derretimento das calotas polares, elevação do nível do mar e impactos negativos na biodiversidade e na saúde humana.
+    </p>
+    <h3>Causas</h3>
+    <p>
+      Entre as principais causas estão a queima de combustíveis fósseis (em veículos, indústrias e geração de energia), o desmatamento, a produção excessiva de resíduos e o uso intensivo de recursos naturais. Essas atividades liberam grandes quantidades de CO₂ e outros gases nocivos na atmosfera.
+    </p>
+    <h3>Como Podemos Evitar</h3>
+    <p>
+      Podemos reduzir nossa pegada de carbono adotando práticas mais sustentáveis, tais como: utilizar transporte público ou meios alternativos (bicicleta, caminhada), reduzir o consumo de carne, investir em energias renováveis, praticar a reciclagem e o consumo consciente, além de apoiar iniciativas e políticas ambientais que promovam a sustentabilidade.
+    </p>
+  </section>
+  
+  <div class="container">
+    <div class="image-block">
+      <img src="imagens/images1.jfif" alt="Ambiente natural">
+    </div>
+    <div class="image-block">
+      <img src="imagens/images2.jfif" alt="Imagem ilustrativa 1">
+    </div>
+    <div class="image-block">
+      <img src="imagens/images3.jfif" alt="Imagem ilustrativa 2">
+    </div>
+  </div>
+  
+  <div class="button-wrapper">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="goo">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+            result="goo" />
+          <feComposite in="SourceGraphic" in2="goo"/>
+        </filter>
+      </defs>
+    </svg>
+
+    <span class="button--bubble__container">
+      <a href="quiz.html" class="button button--bubble">
+        Começar Quiz
+      </a>
+      <span class="button--bubble__effect-container">
+        <span class="circle top-left"></span>
+        <span class="circle top-left"></span>
+        <span class="circle top-left"></span>
+
+        <span class="button effect-button"></span>
+
+        <span class="circle bottom-right"></span>
+        <span class="circle bottom-right"></span>
+        <span class="circle bottom-right"></span>
+      </span>
+    </span>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+  
+  <script>
+    $('.button--bubble').each(function() {
+      var $circlesTopLeft = $(this).parent().find('.circle.top-left');
+      var $circlesBottomRight = $(this).parent().find('.circle.bottom-right');
+
+      var tl = new TimelineLite();
+      var tl2 = new TimelineLite();
+
+      var btTl = new TimelineLite({ paused: true });
+
+      tl.to($circlesTopLeft, 1.2, { x: -25, y: -25, scaleY: 2, ease: SlowMo.ease.config(0.1, 0.7, false) });
+      tl.to($circlesTopLeft.eq(0), 0.1, { scale: 0.2, x: '+=6', y: '-=2' });
+      tl.to($circlesTopLeft.eq(1), 0.1, { scaleX: 1, scaleY: 0.8, x: '-=10', y: '-=7' }, '-=0.1');
+      tl.to($circlesTopLeft.eq(2), 0.1, { scale: 0.2, x: '-=15', y: '+=6' }, '-=0.1');
+      tl.to($circlesTopLeft.eq(0), 1, { scale: 0, x: '-=5', y: '-=15', opacity: 0 });
+      tl.to($circlesTopLeft.eq(1), 1, { scaleX: 0.4, scaleY: 0.4, x: '-=10', y: '-=10', opacity: 0 }, '-=1');
+      tl.to($circlesTopLeft.eq(2), 1, { scale: 0, x: '-=15', y: '+=5', opacity: 0 }, '-=1');
+
+      var tlBt1 = new TimelineLite();
+      var tlBt2 = new TimelineLite();
+      
+      tlBt1.set($circlesTopLeft, { x: 0, y: 0, rotation: -45 });
+      tlBt1.add(tl);
+
+      tl2.set($circlesBottomRight, { x: 0, y: 0 });
+      tl2.to($circlesBottomRight, 1.1, { x: 30, y: 30, ease: SlowMo.ease.config(0.1, 0.7, false) });
+      tl2.to($circlesBottomRight.eq(0), 0.1, { scale: 0.2, x: '-=6', y: '+=3' });
+      tl2.to($circlesBottomRight.eq(1), 0.1, { scale: 0.8, x: '+=7', y: '+=3' }, '-=0.1');
+      tl2.to($circlesBottomRight.eq(2), 0.1, { scale: 0.2, x: '+=15', y: '-=6' }, '-=0.2');
+      tl2.to($circlesBottomRight.eq(0), 1, { scale: 0, x: '+=5', y: '+=15', opacity: 0 });
+      tl2.to($circlesBottomRight.eq(1), 1, { scale: 0.4, x: '+=7', y: '+=7', opacity: 0 }, '-=1');
+      tl2.to($circlesBottomRight.eq(2), 1, { scale: 0, x: '+=15', y: '-=5', opacity: 0 }, '-=1');
+      
+      tlBt2.set($circlesBottomRight, { x: 0, y: 0, rotation: 45 });
+      tlBt2.add(tl2);
+
+      btTl.add(tlBt1);
+      btTl.to($(this).parent().find('.button.effect-button'), 0.8, { scaleY: 1.1 }, 0.1);
+      btTl.add(tlBt2, 0.2);
+      btTl.to($(this).parent().find('.button.effect-button'), 1.8, { scale: 1, ease: Elastic.easeOut.config(1.2, 0.4) }, 1.2);
+
+      btTl.timeScale(2.6);
+
+      $(this).on('mouseover', function() {
+        btTl.restart();
+      });
+    });
+  </script>
+</body>
+</html>
